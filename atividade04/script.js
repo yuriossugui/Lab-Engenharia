@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     class Aluno extends Pessoa{
         constructor(nome,email,data,telefoneFixo,telefoneCelular,matricula,curso){
-            super(nome,email,data,telefoneFixo,telefoneCelular,matricula)
+            super(nome,email,data,telefoneFixo,telefoneCelular,matricula);
             this.curso = curso;
         }
     }
@@ -52,8 +52,27 @@ document.addEventListener("DOMContentLoaded", function () {
         let dataNascimento = document.getElementById('dataNascimento').value;
         let telFixo = document.getElementById('telFixo').value;
         let telCelular = document.getElementById('telCelular').value;
+        let matricula = document.getElementById('matricula').value;
+        let area = document.getElementById('area').value;
+        let lattes = document.getElementById('area').value;
+        let curso = document.getElementById('curso').value;
 
-        let tipo = document.getElementById()
+        const radios = document.getElementsByName('tipoPessoa');
+        let valorSelecionado = null;
+
+        for (let i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                valorSelecionado = radios[i].value;
+                break; // Sai do loop assim que encontrar um selecionado
+            }
+        }
+
+        if(valorSelecionado == 'aluno')
+        {
+           const aluno = new Aluno(nome, email, dataNascimento, telFixo, telCelular, matricula, curso);    
+           console.log(aluno);
+        }
+
 
     });
 
