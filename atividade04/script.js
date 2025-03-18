@@ -47,15 +47,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const btnSubmit = document.getElementById('btnSubmit');
     btnSubmit.addEventListener('click', function() {
 
-        let nome = document.getElementById('nome').value;
-        let email = document.getElementById('email').value;
-        let dataNascimento = document.getElementById('dataNascimento').value;
-        let telFixo = document.getElementById('telFixo').value;
-        let telCelular = document.getElementById('telCelular').value;
-        let matricula = document.getElementById('matricula').value;
-        let area = document.getElementById('area').value;
-        let lattes = document.getElementById('area').value;
-        let curso = document.getElementById('curso').value;
+        let nome = document.getElementById('nome').value ?? 'Não informado';
+        let email = document.getElementById('email').value ?? 'Não informado';
+        let dataNascimento = document.getElementById('dataNascimento').value ?? 'Não informado';
+        let telFixo = document.getElementById('telFixo').value ?? 'Não informado';
+        let telCelular = document.getElementById('telCelular').value ?? 'Não informado';
+        let matricula = document.getElementById('matricula').value ?? 'Não informado';
+        let area = document.getElementById('area').value ?? 'Não informado';
+        let lattes = document.getElementById('lattes').value ?? 'Não informado';
+        let curso = document.getElementById('curso').value ?? 'Não informado';
 
         const radios = document.getElementsByName('tipoPessoa');
         let valorSelecionado = null;
@@ -70,9 +70,49 @@ document.addEventListener("DOMContentLoaded", function () {
         if(valorSelecionado == 'aluno')
         {
            const aluno = new Aluno(nome, email, dataNascimento, telFixo, telCelular, matricula, curso);    
-           console.log(aluno);
+           
+           const cardSuccess = document.getElementById('cardSuccess');
+           cardSuccess.style.setProperty('display','block');
+
+           const userInfo = document.getElementById('userInfo');
+
+           const html = `
+            <p>Nome: ${aluno.nome}</p>
+            <p>E-mail: ${aluno.email}</p>
+            <p>Data Nascimento: ${aluno.dataNascimento}</p>
+            <p>Telefone Fixo: ${aluno.telFixo}</p>
+            <p>Telefone Celular: ${aluno.telCelular}</p>
+            <p>Matricula: ${aluno.matricula}</p>
+            <p>Curso: ${aluno.curso}</p>
+           `;
+
+           userInfo.innerHTML = html;
+
         }
 
+        if(valorSelecionado == 'professor')
+        {
+           const professor = new Professor(nome, email, dataNascimento, telFixo, telCelular, matricula, area, lattes);    
+           
+           const cardSuccess = document.getElementById('cardSuccess');
+           cardSuccess.style.setProperty('display','block');
+
+           const userInfo = document.getElementById('userInfo');
+
+           const html = `
+            <p>Nome: ${professor.nome}</p>
+            <p>E-mail: ${professor.email}</p>
+            <p>Data Nascimento: ${professor.dataNascimento}</p>
+            <p>Telefone Fixo: ${professor.telFixo}</p>
+            <p>Telefone Celular: ${professor.telCelular}</p>
+            <p>Matricula: ${professor.matricula}</p>
+            <p>Area: ${professor.area}</p>
+            <p>Lattes: ${professor.lattes}</p>
+           `;
+
+           userInfo.innerHTML = html;
+
+        }
 
     });
 
