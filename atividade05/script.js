@@ -34,7 +34,55 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
 </div> 
     `;
-
+    
     counter.innerHTML = html;
+
+    const totalInput = document.querySelector('.container .form-control');
+    const homensInput = document.querySelector('.col-md-6:first-child .form-control');
+    const mulheresInput = document.querySelector('.col-md-6:last-child .form-control');
+    
+    const homemPlusBtn = document.querySelector('.col-md-6:first-child .btn-success');
+    const homemMinusBtn = document.querySelector('.col-md-6:first-child .btn-danger');
+    const mulherPlusBtn = document.querySelector('.col-md-6:last-child .btn-success');
+    const mulherMinusBtn = document.querySelector('.col-md-6:last-child .btn-danger');
+    const zerarBtn = document.querySelector('.btn-outline-secondary');
+
+    let homens = 0;
+    let mulheres = 0;
+
+    function atualizarTotal() {
+        const total = homens + mulheres;
+        totalInput.value = total;
+        homensInput.value = homens;
+        mulheresInput.value = mulheres;
+    }
+
+    homemPlusBtn.addEventListener('click', () => {
+        homens++;
+        atualizarTotal();
+    });
+
+    homemMinusBtn.addEventListener('click', () => {
+        if (homens > 0) homens--;
+        atualizarTotal();
+    });
+
+    mulherPlusBtn.addEventListener('click', () => {
+        mulheres++;
+        atualizarTotal();
+    });
+
+    mulherMinusBtn.addEventListener('click', () => {
+        if (mulheres > 0) mulheres--;
+        atualizarTotal();
+    });
+
+    zerarBtn.addEventListener('click', () => {
+        homens = 0;
+        mulheres = 0;
+        atualizarTotal();
+    });
+
+    atualizarTotal();
 
 });
